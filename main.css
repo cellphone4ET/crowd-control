@@ -1,0 +1,28 @@
+h1 {
+	font-size: 30px;
+}
+
+#geolocation-button {
+	display: block;
+	margin-bottom: 15px;
+}
+}
+#submit-location-button {
+	display: block;
+}
+
+#added-funk {
+	font-size: 20px;
+}
+
+
+label {
+	display: block;
+}
+#end-date, #start-date {
+	margin-bottom: 15px;
+}
+
+#results-menu {
+	display: none;
+}

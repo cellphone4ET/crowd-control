@@ -7,16 +7,38 @@
 	<link href="main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<header role="banner">Crowd Control</header>
+	<header role="banner"><h1>Crowd Control</h1></header>
 		<main role="main">
 
-			<form id="main-submit-form" action="" method="get" class="js-set-location-form">
-				<fieldset>
-				<legend>Location</legend>
-					<input id="location-input" type="text" required="required" aria-label="location">
-					<input id="submit-location-button" type="submit" aria-label="submit-location">
-				</fieldset>
-			</form>
+<!--home page submit form-->
+			<div id="homepage form">
+				<form id="main-submit-form" action="" method="get" class="js-set-location-form">
+					<fieldset>
+					<legend>Location</legend>
+						<button id="geolocation-button" type="button">Use my location</button>
+						<p>------ or ------</p>
+						<p>Enter your location here:</p>
+						<input id="location-input" type="text" required="required" aria-label="location">
+						<input id="submit-location-button" type="submit" aria-label="submit-location">
+					</fieldset>
+				</form>
+			</div>
+
+<!--- menu form for extra information-->
+			<div id="results-menu">
+				<p id="added-funk">Added Functionality</p>
+				<form id="menu-options-form" action="" method="get">
+					<fieldset>
+					<legend>Set Date Range</legend>
+						<label for="start-date">from...</label>
+						<input id="start-date" type=text required="required">
+						<label for="end-date">to...</label>
+						<input id="end-date" type="text" required="required">
+						<input id="submit-date-range" type="submit" aria-label="date-range">
+					</fieldset>
+				</form>
+			</div>
+
 
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 			<script async defer
