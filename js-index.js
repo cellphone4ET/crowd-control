@@ -1,12 +1,16 @@
+const state = {
+	userLocation: {},
+	beginningDate: ['YYYY-MM-DD'],
+	endDate: ['YYYY-MM-DD']
+};
 
-
-function getDataFromAPI(lat, lon) {
+function getDataFromAPI(lat, lng) {
 	let SEAT_GEEK_URL = "https://api.seatgeek.com/2/events";
 	let settings = { 
 		url: SEAT_GEEK_URL,
 		data: {
 			lat: lat,
-			lon: lon,
+			lon: lng,
 			datetime_utc: '2018-04-20',
 			per_page: 5,
 			client_id: `MTEyMzQzMjd8MTUyMzgyODA5MS41NA`,
@@ -37,13 +41,13 @@ function submitButton() {
 }
 
 function geoCodeSearch(address) {
-	let geocoder= new google.maps.Geocoder();
+	let geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
       	console.log(results[0].geometry.location);
       	let lat = results[0].geometry.location.lat();
-      	let lon = results[0].geometry.location.lon();
-      	getDataFromAPI(lat, lon);
+      	let lng = results[0].geometry.location.lng();
+      	getDataFromAPI(lat, lng);
         // map.setCenter(results[0].geometry.location);
         // var marker = new google.maps.Marker({
         //     map: map,
