@@ -1,7 +1,12 @@
 const state = {
-	userLocation: {},
-	beginningDate: ['YYYY-MM-DD'],
-	endDate: ['YYYY-MM-DD']
+	userLocation: {
+		latitude: [],
+		longitude: []
+	},
+	userDates: {
+		beginDate: ['YYYY-MM-DD'],
+		endDate: ['YYYY-MM-DD']
+	}
 };
 
 function getDataFromAPI(lat, lng) {
@@ -11,7 +16,6 @@ function getDataFromAPI(lat, lng) {
 		data: {
 			lat: lat,
 			lon: lng,
-			datetime_utc: '2018-04-20',
 			per_page: 5,
 			client_id: `MTEyMzQzMjd8MTUyMzgyODA5MS41NA`,
 			client_secret: 'ff1ee01bc647aabb41616ad3d3d3d340eb2ed31f38dd732953388a38285cccde'
