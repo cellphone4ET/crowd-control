@@ -10,7 +10,7 @@
 	<header role="banner">Crowd Control</header>
 		<main role="main">
 
-			<form action="" method="get" class="js-set-location-form">
+			<form id="main-submit-form" action="" method="get" class="js-set-location-form">
 				<fieldset>
 				<legend>Location</legend>
 					<input id="location-input" type="text" required="required" aria-label="location">
@@ -19,6 +19,9 @@
 			</form>
 
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+			<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWNt1eiLCLkuGMqDv24cfgZre_U_k_oBs&callback=init">
+    </script>
 			<script type="text/javascript" src="js-index.js"></script>
 		</main>
 </body>
