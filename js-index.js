@@ -8,22 +8,22 @@ const state = {
 
 var map;
 var geocoder;
+var infoWindow;
+var lat;
+var lng;
 
 function init() {
-	//console.log('init ran');
 	geocoder = new google.maps.Geocoder();
-	var latlng = new google.maps.LatLng(51.531703, -0.124310);
+	var latlng = new google.maps.LatLng(37.781555, -122.4194);
 	var mapOptions = {
-		zoom: 14,
+		zoom: 13,
 		center: latlng,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
-	map = new google.maps.Map($('.map'), mapOptions);
-
+	map = new google.maps.Map(document.getElementById('map'), mapOptions);
 }
 
-
 function getCurrentLocation() {
+	infoWindow = new google.maps.InfoWindow;
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 
@@ -31,6 +31,10 @@ function getCurrentLocation() {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
 			};
+
+			lat = position.coords.latitude;
+			lng = position.coords.longitude;
+
 			state.userLocation = pos;
 			getDataFromAPI(lat, lng);
 
@@ -42,7 +46,7 @@ function getCurrentLocation() {
 		// Browser doesn't support Geolocation
 		handleLocationError(false, infoWindow, map.getCenter());
 	}
-};
+}
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	infoWindow.setPosition(pos);
@@ -51,18 +55,21 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		'Error: Your browser doesn\'t support geolocation.');
 }
 
+
+
 function geoCodeSearch(address) {
+	
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
       	console.log(results[0].geometry.location);
-      	let lat = results[0].geometry.location.lat();
-      	let lng = results[0].geometry.location.lng();
+      	lat = results[0].geometry.location.lat();
+      	lng = results[0].geometry.location.lng();
       	getDataFromAPI(lat, lng);
-        // map.setCenter(results[0].geometry.location);
-        // var marker = new google.maps.Marker({
-        //     map: map,
-        //     position: results[0].geometry.location
-        // });
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
@@ -96,6 +103,7 @@ function getDataFromAPI(lat, lng) {
 function submitManualLocationInput() {
 	$('#main-submit-form').on('submit', function(event) {
 		event.preventDefault();
+		init();
 		let address= $('#location-input').val();
 		geoCodeSearch(address);
 		$('#location-input').val(' ');
@@ -108,6 +116,7 @@ function submitGeoLocation() {
 		getCurrentLocation();
 	})
 }
+
 
 submitGeoLocation();
 submitManualLocationInput();
