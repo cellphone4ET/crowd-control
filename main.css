@@ -26,3 +26,7 @@ label {
 #results-menu {
 	display: none;
 }
+
+.map {
+	height: 500px;
+}
