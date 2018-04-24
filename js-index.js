@@ -3,27 +3,19 @@ $(document).ready(function() {
 
 const state = {
 	userLocation: {},
-	userDates: {}
+	//userDates: {}
 };
 
 var map;
 var geocoder;
 var infoWindow;
-var lat;
-var lng;
 
-function init() {
-	geocoder = new google.maps.Geocoder();
-	var latlng = new google.maps.LatLng(37.781555, -122.4194);
-	var mapOptions = {
-		zoom: 13,
-		center: latlng,
-	};
-	map = new google.maps.Map(document.getElementById('map'), mapOptions);
-}
 
+//functions to get current location
 function getCurrentLocation() {
+	geocoder = new google.maps.Geocoder();
 	infoWindow = new google.maps.InfoWindow;
+	
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 
@@ -31,14 +23,19 @@ function getCurrentLocation() {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
 			};
-
-			lat = position.coords.latitude;
-			lng = position.coords.longitude;
+			var latlng = new google.maps.LatLng(state.userLocation.lat, state.userLocation.lat);
+			var mapOptions = {
+				zoom: 13,
+				center: latlng,
+			};
+			map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			infoWindow.setPosition(pos);
+            infoWindow.setContent('You are here.');
+            infoWindow.open(map);
+			map.setCenter(pos);
 
 			state.userLocation = pos;
-			getDataFromAPI(lat, lng);
-
-			map.setCenter(pos);
+			getDataFromAPI(state.userLocation.lat, state.userLocation.lng);
 		}, function() {
 			handleLocationError(true, infoWindow, map.getCenter());
 		});
@@ -55,17 +52,22 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		'Error: Your browser doesn\'t support geolocation.');
 }
 
-
-
 function geoCodeSearch(address) {
-	
+	geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
-      	console.log(results[0].geometry.location);
-      	lat = results[0].geometry.location.lat();
-      	lng = results[0].geometry.location.lng();
-      	getDataFromAPI(lat, lng);
-        map.setCenter(results[0].geometry.location);
+      	
+      	state.userLocation.lat = results[0].geometry.location.lat();
+      	state.userLocation.lng = results[0].geometry.location.lng();
+      	getDataFromAPI(state.userLocation.lat, state.userLocation.lng);
+
+      	var latlng = new google.maps.LatLng(state.userLocation.lat, state.userLocation.lng);
+		var mapOptions = {
+			zoom: 13,
+			center: latlng,
+		};
+		map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      	map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
             map: map,
             position: results[0].geometry.location
@@ -103,7 +105,6 @@ function getDataFromAPI(lat, lng) {
 function submitManualLocationInput() {
 	$('#main-submit-form').on('submit', function(event) {
 		event.preventDefault();
-		init();
 		let address= $('#location-input').val();
 		geoCodeSearch(address);
 		$('#location-input').val(' ');
@@ -112,11 +113,9 @@ function submitManualLocationInput() {
 
 function submitGeoLocation() {
 	$('#geolocation-button').on('click', function(event) {
-		init();
 		getCurrentLocation();
 	})
 }
-
 
 submitGeoLocation();
 submitManualLocationInput();
