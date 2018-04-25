@@ -3,19 +3,22 @@ $(document).ready(function() {
 
 const state = {
 	userLocation: {},
-	//userDates: {}
+	crowdedLocations: {},
+	markers: []
 };
 
 var map;
 var geocoder;
 var infoWindow;
+var markerPos;
+var contentString;
 
 
 //functions to get current location
 function getCurrentLocation() {
 	geocoder = new google.maps.Geocoder();
 	infoWindow = new google.maps.InfoWindow;
-	
+
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 
@@ -68,7 +71,7 @@ function geoCodeSearch(address) {
 		};
 		map = new google.maps.Map(document.getElementById('map'), mapOptions);
       	map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
+        let marker = new google.maps.Marker({
             map: map,
             position: results[0].geometry.location
         });
@@ -92,13 +95,53 @@ function getDataFromAPI(lat, lng) {
 		dataType: 'json',
 		type: 'GET',
 		success: function(data) {
-			console.log(data);
+			displayData(data);
 		},
 		error: function(error) {
 			console.log(error);
 		}
 	};
 	$.ajax(settings);
+}
+
+//functions to display data
+function displayData(data) {
+	console.log(data);
+	let results = data.events;
+	let events = results.map(function(event) {
+		var markerPos = {
+			lat: event.venue.location.lat,
+			lng: event.venue.location.lon
+		}
+
+		var contentString = `On ${event.datetime_local} there will be a large crowd around\
+		${event.venue.address}. May be best to avoid that area.`
+
+		state.crowdedLocations.lat = markerPos.lat;
+		state.crowdedLocations.lng = markerPos.lng;
+
+		createMarker(markerPos, contentString);
+
+	})
+}
+
+function createMarker(markerPos, contentString) {
+	
+	var infowindow = new google.maps.InfoWindow({
+	     content: contentString
+	   });
+	var marker = new google.maps.Marker({
+			position: markerPos,
+			map: map,
+			title: "Introverts beware!",
+			infowindow: infoWindow,
+			
+			//icon: 'images/icn_blue.png'
+		});
+		marker.addListener('click', function(){
+			infowindow.open(map, marker);
+		})
+	state.markers.push(marker)
 }
 
 //event listeners
