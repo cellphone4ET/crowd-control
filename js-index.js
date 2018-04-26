@@ -1,5 +1,4 @@
 $(document).ready(function() {
-"use strict";
 
 const state = {
 	userLocation: {},
@@ -88,6 +87,8 @@ function getDataFromAPI(lat, lng) {
 		data: {
 			lat: lat,
 			lon: lng,
+			// datetime_local: 2018-04-27,
+			// datetime_local: 2018-10-04,
 			per_page: 5,
 			client_id: `MTEyMzQzMjd8MTUyMzgyODA5MS41NA`,
 			client_secret: 'ff1ee01bc647aabb41616ad3d3d3d340eb2ed31f38dd732953388a38285cccde'
