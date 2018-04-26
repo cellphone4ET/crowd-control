@@ -1,8 +1,5 @@
-$(document).ready(function() {
-
 const state = {
 	userLocation: {},
-	crowdedLocations: {},
 	markers: []
 };
 
@@ -12,32 +9,30 @@ var infoWindow;
 var markerPos;
 var contentString;
 
+function init(){
+	geocoder = new google.maps.Geocoder();
+	var latlng = new google.maps.LatLng(0, 0);
+	var mapOptions = {
+		zoom: 13,
+		center: latlng,
+	};
+	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	infoWindow = new google.maps.InfoWindow({
+		content: "______"
+	});
+}
+
 
 //functions to get current location
 function getCurrentLocation() {
-	geocoder = new google.maps.Geocoder();
-	infoWindow = new google.maps.InfoWindow;
-
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
-
-			var pos = {
+			state.userLocation = {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
 			};
-			var latlng = new google.maps.LatLng(state.userLocation.lat, state.userLocation.lat);
-			var mapOptions = {
-				zoom: 13,
-				center: latlng,
-			};
-			map = new google.maps.Map(document.getElementById('map'), mapOptions);
-			infoWindow.setPosition(pos);
-            infoWindow.setContent('You are here.');
-            infoWindow.open(map);
-			map.setCenter(pos);
-
-			state.userLocation = pos;
-			getDataFromAPI(state.userLocation.lat, state.userLocation.lng);
+			geocodeSuccess()
 		}, function() {
 			handleLocationError(true, infoWindow, map.getCenter());
 		});
@@ -47,124 +42,113 @@ function getCurrentLocation() {
 	}
 }
 
+
+function geoCodeSearch(address) {
+	geocoder = new google.maps.Geocoder();
+	geocoder.geocode( { 'address': address}, function(results, status) {
+		if (status == 'OK') {
+			state.userLocation.lat = results[0].geometry.location.lat();
+			state.userLocation.lng = results[0].geometry.location.lng();
+			geocodeSuccess()
+		} else {
+			console.log(status)
+			alert(`Geocode wasn't successful, try searching manually`);
+		}
+	});
+}
+
+function geocodeSuccess(){
+	map.setCenter(state.userLocation);
+	infoWindow.setPosition(state.userLocation);
+	infoWindow.setContent('You are here.');
+	infoWindow.open(map);
+	getDataFromAPI(state.userLocation.lat, state.userLocation.lng);
+}
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	infoWindow.setPosition(pos);
 	infoWindow.setContent(browserHasGeolocation ?
 		'Error: The Geolocation service failed.' :
 		'Error: Your browser doesn\'t support geolocation.');
-}
+	}
 
-function geoCodeSearch(address) {
-	geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == 'OK') {
-      	
-      	state.userLocation.lat = results[0].geometry.location.lat();
-      	state.userLocation.lng = results[0].geometry.location.lng();
-      	getDataFromAPI(state.userLocation.lat, state.userLocation.lng);
 
-      	var latlng = new google.maps.LatLng(state.userLocation.lat, state.userLocation.lng);
-		var mapOptions = {
-			zoom: 13,
-			center: latlng,
+	function getDataFromAPI(lat, lng) {
+		let SEAT_GEEK_URL = "https://api.seatgeek.com/2/events";
+		let settings = {
+			url: SEAT_GEEK_URL,
+			data: {
+				lat: lat,
+				lon: lng,
+				per_page: 25,
+				client_id: `MTEyMzQzMjd8MTUyMzgyODA5MS41NA`,
+				client_secret: 'ff1ee01bc647aabb41616ad3d3d3d340eb2ed31f38dd732953388a38285cccde'
+			},
+			dataType: 'json',
+			type: 'GET',
+			success: function(data) {
+				displayData(data);
+			},
+			error: function(error) {
+				console.log(error);
+			}
 		};
-		map = new google.maps.Map(document.getElementById('map'), mapOptions);
-      	map.setCenter(results[0].geometry.location);
-        let marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-}
+		$.ajax(settings);
+	}
 
-function getDataFromAPI(lat, lng) {
-	let SEAT_GEEK_URL = "https://api.seatgeek.com/2/events";
-	let settings = { 
-		url: SEAT_GEEK_URL,
-		data: {
-			lat: lat,
-			lon: lng,
-			// datetime_local: 2018-04-27,
-			// datetime_local: 2018-10-04,
-			per_page: 5,
-			client_id: `MTEyMzQzMjd8MTUyMzgyODA5MS41NA`,
-			client_secret: 'ff1ee01bc647aabb41616ad3d3d3d340eb2ed31f38dd732953388a38285cccde'
-		},
-		dataType: 'json',
-		type: 'GET',
-		success: function(data) {
-			displayData(data);
-		},
-		error: function(error) {
-			console.log(error);
-		}
-	};
-	$.ajax(settings);
-}
+	//functions to display data
+	function displayData(data) {
+		console.log(data);
+		let results = data.events;
+		let events = results.map(function(event) {
+			var markerPos = {
+				lat: event.venue.location.lat,
+				lng: event.venue.location.lon
+			}
 
-//functions to display data
-function displayData(data) {
-	console.log(data);
-	let results = data.events;
-	let events = results.map(function(event) {
-		var markerPos = {
-			lat: event.venue.location.lat,
-			lng: event.venue.location.lon
-		}
+			var contentString = `
+			<div>
+			<h1>event name</h1>
+			On ${event.datetime_local} there will be a large crowd around\
+			${event.venue.address}. May be best to avoid that area.
+			</div>`
 
-		var contentString = `On ${event.datetime_local} there will be a large crowd around\
-		${event.venue.address}. May be best to avoid that area.`
+			createMarker(markerPos, contentString);
+		})
+	}
 
-		state.crowdedLocations.lat = markerPos.lat;
-		state.crowdedLocations.lng = markerPos.lng;
-
-		createMarker(markerPos, contentString);
-
-	})
-}
-
-function createMarker(markerPos, contentString) {
-	
-	var infowindow = new google.maps.InfoWindow({
-	     content: contentString
-	   });
-	var marker = new google.maps.Marker({
+	function createMarker(markerPos, contentString) {
+		var marker = new google.maps.Marker({
 			position: markerPos,
 			map: map,
 			title: "Introverts beware!",
 			infowindow: infoWindow,
-			
 			//icon: 'images/icn_blue.png'
 		});
 		marker.addListener('click', function(){
-			infowindow.open(map, marker);
+			infoWindow.open(map, marker);
+			infoWindow.setContent(contentString)
 		})
-	state.markers.push(marker)
-}
+		state.markers.push(marker)
+	}
 
-//event listeners
-function submitManualLocationInput() {
-	$('#main-submit-form').on('submit', function(event) {
-		event.preventDefault();
-		let address= $('#location-input').val();
-		geoCodeSearch(address);
-		$('#location-input').val(' ');
-	})
-}
+	//event listeners
+	function submitManualLocationInput() {
+		$('#main-submit-form').on('submit', function(event) {
+			event.preventDefault();
+			let address= $('#location-input').val();
+			geoCodeSearch(address);
+			$('#location-input').val(' ');
+		})
+	}
 
-function submitGeoLocation() {
-	$('#geolocation-button').on('click', function(event) {
-		getCurrentLocation();
-	})
-}
+	function submitGeoLocation() {
+		$('#geolocation-button').on('click', function(event) {
+			getCurrentLocation();
+		})
+	}
 
-submitGeoLocation();
-submitManualLocationInput();
-
-});
-
-
-
+	$(document).ready(function() {
+		submitGeoLocation();
+		submitManualLocationInput();
+	});
