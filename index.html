@@ -9,9 +9,11 @@
 <body>
 	<header role="banner"><h1>Crowd Control</h1></header>
 		<main role="main">
+			<p>Want to go out but can't stand getting stuck in overly congested areas of your city?<br>
+			Use Crowd Control to find out where the crowds are in your area so you know where not to go!</p>
 
 <!--home page submit form-->
-			<div id="homepage form">
+			<div id="homepage-form">
 				<form id="main-submit-form" action="" method="get" class="js-set-location-form">
 					<fieldset>
 					<legend>Location</legend>
@@ -24,23 +26,32 @@
 				</form>
 			</div>
 
-<!--where the map will go/should-->
-			<div id="map"></div>
-
 <!--- menu form for extra information-->
-			<div id="results-menu">
-				<p id="added-funk">Added Functionality</p>
-				<form id="menu-options-form" action="" method="get">
+			<div id="results-menu" hidden>
+				<form id="future-date-form" action="" method="get">
 					<fieldset>
-					<legend>Set Date Range</legend>
-						<label for="start-date">from...</label>
-						<input id="start-date" type=text required="required">
-						<label for="end-date">to...</label>
-						<input id="end-date" type="text" required="required">
-						<input id="submit-date-range" type="submit" aria-label="date-range">
+					<legend>Search a Future Date</legend>
+						<p>Want to plan ahead? Find out where the crowds will be 
+						by searching for a specific date in the future.</p>
+						<input id="future-date-input" type=text aria-label="future-date-input" placeholder="YYYY/MM/DD">
+						<input id="future-date" type="submit" aria-label="future-date">
+					</fieldset>
+				</form>
+					<br>
+				<form id="new-location-form" action="" method="get">
+					<fieldset>
+						<legend>Search a New City</legend>
+						<p>Want to see where the crowds are in a different
+						location? Search a different city to see where
+						the crowds are there.</p>
+						<input id="new-location-input" type="text"  aria-label="new-location">
+						<input id="new-location-search-submit" type="submit" aria-label="submit-new-location-search">
 					</fieldset>
 				</form>
 			</div>
+
+			<!--where the map will go/should-->
+			<div id="map" hidden></div>
 
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 			<script type="text/javascript" src="js-index.js"></script>

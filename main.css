@@ -2,6 +2,10 @@ h1 {
 	font-size: 30px;
 }
 
+#homepage-form {
+	margin-bottom: 20px;
+}
+
 #geolocation-button {
 	display: block;
 	margin-bottom: 15px;
@@ -11,20 +15,16 @@ h1 {
 	display: block;
 }
 
-#added-funk {
-	font-size: 20px;
-}
-
-
 label {
 	display: block;
 }
-#end-date, #start-date {
+#future-date {
 	margin-bottom: 15px;
 }
 
 #results-menu {
-	display: none;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 #map {
@@ -33,5 +33,6 @@ label {
 }
 
 #menu-options-form {
-	
+	margin-bottom: 20px;
+
 }
