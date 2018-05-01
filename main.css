@@ -1,5 +1,59 @@
+* {
+  box-sizing: border-box;*/
+  text-align: center;
+  font-family: 'Pragati Narrow', sans-serif;
+  font-size: 20px;
+}
+
+body {
+	background-color: white;
+	background-image: url("https://i.imgur.com/UTk3vSX.png");
+	background-position: center;
+    background-size: cover;
+    padding-top: 100px;
+}
+
 h1 {
-	font-size: 30px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 90px;
+	line-height: 80%;
+
+}
+
+#main-div {
+	display: block;
+	width: 350px;
+	text-align: center;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 40px;
+	padding-right: 30px;
+	padding-left: 30px;
+	padding-top: 20px;
+	padding-bottom: 0px;
+
+}
+
+#explanation-text {
+	line-height: 100%;
+	font-size: 25px;
+}
+
+fieldset legend {
+   border: 0;
+   padding: 0;
+   white-space: normal;
+}
+fieldset {
+   border:0;
+   padding:0;
+   margin-left:0px;
+}
+
+legend {
+	display: none;
 }
 
 #homepage-form {
@@ -7,12 +61,29 @@ h1 {
 }
 
 #geolocation-button {
-	display: block;
+	display: inline-block;
+	height: 70px;
+	width: 240px;
+	margin-right: auto;
+	margin-left: auto;
 	margin-bottom: 15px;
+	font-size: 27px;
+	background-color: #EB5757;
 }
+
+#or {
+	font-size: 40px;
+}
+#location-input {
+	width: 200px;
+}
+
 }
 #submit-location-button {
 	display: block;
+	background-color: #EB5757;
+	font-weight: 300;
+	
 }
 
 label {
@@ -28,11 +99,8 @@ label {
 }
 
 #map {
-	height: 400px;
+	position: relative;
+	height: 100%;
 	width: 100%;
-}
-
-#menu-options-form {
-	margin-bottom: 20px;
-
+	position: absolute;
 }

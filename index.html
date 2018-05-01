@@ -5,26 +5,30 @@
 	<meta name="description" content="API hack">
 	<title>Crowd Control</title>
 	<link href="main.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Pragati+Narrow" rel="stylesheet">
 </head>
 <body>
-	<header role="banner"><h1>Crowd Control</h1></header>
-		<main role="main">
-			<p>Want to go out but can't stand getting stuck in overly congested areas of your city?<br>
-			Use Crowd Control to find out where the crowds are in your area so you know where not to go!</p>
+	<div id="main-div">
+		<header role="banner"><h1>Crowd Control</h1></header>
+			<main role="main">
+				<p id="explanation-text">Want to go out but can't stand getting stuck in overly congested areas of your city?
+					<br><br> Use Crowd Control to find out where the crowds are in your area so you know where not to go!</p>
 
-<!--home page submit form-->
-			<div id="homepage-form">
-				<form id="main-submit-form" action="" method="get" class="js-set-location-form">
-					<fieldset>
-					<legend>Location</legend>
-						<button id="geolocation-button" type="button">Use my location</button>
-						<p>------ or ------</p>
-						<p>Enter your location here:</p>
-						<input id="location-input" type="text" required="required" aria-label="location">
-						<input id="submit-location-button" type="submit" aria-label="submit-location">
-					</fieldset>
-				</form>
-			</div>
+	<!--home page submit form--><br>
+				<div id="homepage-form">
+					<form id="main-submit-form" action="" method="get" class="js-set-location-form">
+						<fieldset>
+						<legend>Location</legend>
+							<button id="geolocation-button" type="button">Use my location</button>
+							<p id="or">------ or ------</p>
+							<p>Enter your location here:</p>
+							<input id="location-input" type="text" required="required" aria-label="location">
+							<input id="submit-location-button" type="submit" aria-label="submit-location">
+						</fieldset>
+					</form>
+				</div>
+	</div>
+
 
 <!--- menu form for extra information-->
 			<div id="results-menu" hidden>

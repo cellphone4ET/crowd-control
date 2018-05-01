@@ -24,7 +24,7 @@ function init(){
 }
 
 
-//functions to get current location
+//functions to get current location and events data
 function getCurrentLocation() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -136,9 +136,10 @@ function createMarker(markerPos, contentString) {
 }
 
 function hideShowElementsOnSubmit() {
-	$('#main-submit-form').hide();
+	$('#main-div').hide();
 	$('#map').show();
-	$('#results-menu').show();
+	//$('#results-menu').show();
+	$('body').css('background', "url(none");
 }
 //event listeners
 function submitManualLocationInput() {
