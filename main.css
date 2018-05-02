@@ -2,43 +2,73 @@
   box-sizing: border-box;*/
   text-align: center;
   font-family: 'Pragati Narrow', sans-serif;
-  font-size: 20px;
 }
 
-body {
-	background-color: white;
-	background-image: url("https://i.imgur.com/UTk3vSX.png");
-	background-position: center;
-    background-size: cover;
-    padding-top: 100px;
+html {
+	background: url("https://i.imgur.com/UTk3vSX.png");
+ 	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+  	width: 100%;
+ 	overflow: scroll;
+}
+
+header {
+	box-sizing: border-box;
 }
 
 h1 {
+	
 	margin-right: auto;
 	margin-left: auto;
 	font-size: 90px;
-	line-height: 80%;
+	line-height: 90%;
+}
+
+h2 {
+	font-size: 35px;
+	font-weight: bold;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	line-height: 100%;
+}
+
+h3 {
+	font-size: 25px;
+	line-height: 50%;
+}
+
+#event-info {
+	line-height: 100%;
+	font-size: 20px;
 
 }
 
+#homepage-form {
+	margin-right: auto;
+	margin-left: auto;
+}
+
 #main-div {
-	display: block;
 	width: 350px;
 	text-align: center;
 	background-color: white;
+	margin-top: 100px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 40px;
+	margin-bottom: 100px;
 	padding-right: 30px;
 	padding-left: 30px;
 	padding-top: 20px;
 	padding-bottom: 0px;
-
+	border-radius: 3px;
 }
 
 #explanation-text {
 	line-height: 100%;
 	font-size: 25px;
+	margin-bottom: 0%;
 }
 
 fieldset legend {
@@ -46,10 +76,11 @@ fieldset legend {
    padding: 0;
    white-space: normal;
 }
-fieldset {
-   border:0;
-   padding:0;
-   margin-left:0px;
+
+#main-fieldset {
+	margin: auto;
+	border:0;
+	padding:0;
 }
 
 legend {
@@ -63,7 +94,7 @@ legend {
 #geolocation-button {
 	display: inline-block;
 	height: 70px;
-	width: 240px;
+	width: 85%;
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 15px;
@@ -73,17 +104,32 @@ legend {
 
 #or {
 	font-size: 40px;
-}
-#location-input {
-	width: 200px;
+	margin: 0px;
 }
 
+#location-text {
+	font-size: 27px;
+	margin: 0px;
 }
+
+#location-input {
+	width: 200px;
+	height: 53px;
+	margin-bottom: 20%;
+	background-color: #F1EDED;
+	border: none;
+	font-size: 30px;
+}
+
 #submit-location-button {
-	display: block;
 	background-color: #EB5757;
-	font-weight: 300;
-	
+	width: 75px;
+	font-size: 30px;
+	margin-bottom: 40px;
+}
+
+#geolocation-button, #submit-location-button:hover { 
+    cursor: pointer;
 }
 
 label {
@@ -99,8 +145,79 @@ label {
 }
 
 #map {
-	position: relative;
+	position: absolute;
 	height: 100%;
 	width: 100%;
-	position: absolute;
 }
+
+
+#future-date-form, #new-location-form {
+	position: relative;
+	margin: 5%;
+}
+
+/* mobile */
+
+@media only screen and (max-device-width: 640px) {
+	html {
+		width: 100%;
+		/*position: absolute;*/
+		overflow: scroll;
+	}
+
+	h1 {
+		margin-bottom: 20%;
+		margin-top: 5%;
+		margin-right: auto;
+		margin-left: auto;
+		font-size: 20vw;
+		line-height: 80%;
+	}
+
+	#main-div {
+		width: 75%;
+		text-align: center;
+		background-color: white;
+		margin-top: 100px;
+		margin-left: auto;
+		margin-right: auto;
+		margin top: 20%;
+		}
+
+	#homepage-form {
+		margin-bottom: 20px;
+	}
+
+	#main-fieldset {
+		margin: auto;
+		width: 75px;
+	}
+
+	#location-text {
+		font-size: 27px;
+		margin-bottom: 0%;
+	}
+
+	#location-input {
+		margin-bottom: 5%
+	}
+
+	#submit-location-button {
+		background-color: #EB5757;
+		width: 75px;
+		font-size: 30px;
+		margin-bottom: 10%;
+	}
+
+	#map {
+		height: 100%;
+		width: 100%;
+	}
+
+}
+
+
+
+
+
+

@@ -71,17 +71,19 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	'Error: The Geolocation service failed.' :
 	'Error: Your browser doesn\'t support geolocation.');
 	alert('Whoops! Looks like geolocation is having some issues. Please\
-		search for location instead.');
+	search for your location instead.');
 }
 
 
-function getDataFromAPI(lat, lng) {
+function getDataFromAPI(lat, lng, futureStartDate, futurestartDate2) {
 	let SEAT_GEEK_URL = "https://api.seatgeek.com/2/events";
 	let settings = {
 		url: SEAT_GEEK_URL,
 		data: {
 			lat: lat,
 			lon: lng,
+			'datetime_utc.gt': futureStartDate,
+			'datetime_utc.lt': futurestartDate2,
 			per_page: 25,
 			client_id: `MTEyMzQzMjd8MTUyMzgyODA5MS41NA`,
 			client_secret: 'ff1ee01bc647aabb41616ad3d3d3d340eb2ed31f38dd732953388a38285cccde'
@@ -89,7 +91,12 @@ function getDataFromAPI(lat, lng) {
 		dataType: 'json',
 		type: 'GET',
 		success: function(data) {
-			displayData(data);
+			let events = data.events;
+			if (events.length === 0) {
+				alert('change this later');
+			} else {
+				displayData(events);
+			}
 		},
 		error: function(error) {
 			console.log(error);
@@ -99,21 +106,26 @@ function getDataFromAPI(lat, lng) {
 }
 
 //functions to display data
-function displayData(data) {
-	console.log(data);
-	let results = data.events;
-	let events = results.map(function(event) {
+function displayData(events) {
+	console.log(events);
+	let renderedEvents = events.map(function(event) {
 		var markerPos = {
 			lat: event.venue.location.lat,
 			lng: event.venue.location.lon
 		}
 
+		let date = new Date(event.datetime_local);
+		let readableDate = date.toDateString();
+		let readableHours = date.getHours();
+		let readableMinutes = ("0"+ date.getMinutes()).slice(-2);
+		
+
 		var contentString = `
 		<div>
-		<h1>${event.short_title}</h1>
-		<h2>${event.venue.name}</h2>
-		On ${event.datetime_local} there will be a <br> large crowd around\
-		${event.venue.address}. <br><br>It may be best to avoid that area.
+		<h2>${event.short_title}</h2>
+		<h3>${event.venue.name}</h3>
+		<p id="event-info">On ${readableDate} at ${readableHours}:${readableMinutes} there will be a <br> large crowd around\
+		${event.venue.address}. <br><br>It may be best to avoid that area.</p>
 		</div>`
 
 		createMarker(markerPos, contentString);
@@ -126,7 +138,7 @@ function createMarker(markerPos, contentString) {
 		map: map,
 		title: "Introverts beware!",
 		infowindow: infoWindow,
-		//icon: 'images/icn_blue.png'
+		// make the flame
 	});
 	marker.addListener('click', function(){
 		infoWindow.open(map, marker);
@@ -138,9 +150,10 @@ function createMarker(markerPos, contentString) {
 function hideShowElementsOnSubmit() {
 	$('#main-div').hide();
 	$('#map').show();
-	//$('#results-menu').show();
-	$('body').css('background', "url(none");
+	$('#results-menu').show();
+	$('html').css({'background': 'none', 'overflow': ''});;
 }
+
 //event listeners
 function submitManualLocationInput() {
 	$('#main-submit-form').on('submit', function(event) {
@@ -160,7 +173,19 @@ function submitGeoLocation() {
 	});
 }
 
-function submitFutureDate() {}
+function submitFutureDate() {
+	$('#future-date-form').on('submit', function(event) {
+		event.preventDefault();
+		let futureDate = $('#new-location-input').val();
+		futureDate = validateForm(futureDate);
+
+		$('#new-location-input').val(' ');
+		let futureDate2 = futureDate + 1 FIX THIS
+
+		getDataFromAPI(state.userLocation.lat, state.userLocation.lng,\
+		 futureDate, futureDate2);
+	});
+}
 
 function submitNewLocation(){
 	$('#new-location-form').on('submit', function(event) {
@@ -175,7 +200,7 @@ function submitNewLocation(){
 }
 
 $(document).ready(function() {
-	// submitFutureDate();
+	submitFutureDate();
 	submitNewLocation();
 	submitGeoLocation();
 	submitManualLocationInput();
