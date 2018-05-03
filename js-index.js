@@ -1,4 +1,4 @@
-const state = {
+var state = {
 	userLocation: {},
 	markers: []
 };
@@ -70,6 +70,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	'Error: Your browser doesn\'t support geolocation.');
 	alert('Whoops! Looks like geolocation is having some issues. Please\
 	search for your location instead.');
+	$('#main-div').show();
+	$('#map').hide();
+	$('#results-menu').hide();
+	$('html').css({'background': 'url("https://i.imgur.com/UTk3vSX.png");'});
 }
 
 function getDataFromAPI2(lat, lng, futureStartDate, futureStartDate2) {
@@ -120,7 +124,7 @@ function getDataFromAPI(lat, lng) {
 		success: function(data) {
 			let events = data.events;
 			if (events.length === 0) {
-				alert('Lucky you! It looks like there are no events in your immediate area that will draw large crowds. If you\'d like you can see what the crowded areas of another area are by searching by location.');
+				alert('Lucky you! It looks like there are no crowded places due to large events in your current location. If you\'d like to check out the crowded areas of another location just enter a new city name and hit submit.');
 			} else {
 				displayData(events);
 			}
@@ -164,14 +168,13 @@ function createMarker(markerPos, contentString) {
 		position: markerPos,
 		map: map,
 		title: "Introverts beware!",
-		infowindow: infoWindow,
-		// make the flameeeeeeeee note to self don't use emoji
+		infowindow: infoWindow
 	});
 	marker.addListener('click', function(){
 		infoWindow.open(map, marker);
 		infoWindow.setContent(contentString);
 	})
-	state.markers.push(marker)
+	state.markers.push(marker);
 }
 
 function hideShowElementsOnSubmit() {
@@ -180,7 +183,6 @@ function hideShowElementsOnSubmit() {
 	$('#results-menu').show();
 	$('html').css({'background': 'none', 'overflow': ''});;
 }
-
 //event listeners
 function submitManualLocationInput() {
 	$('#main-submit-form').on('submit', function(event) {
@@ -204,17 +206,10 @@ function submitFutureDate() {
 	$('#future-date-form').on('submit', function(event) {
 		event.preventDefault();
 		cleanMarkers();
-		
 		let futureDate = $('#future-date-input').val();
-		console.log(futureDate);
-		
 		let futureDate2 = moment(futureDate).add(1, 'days');
-		futureDate3 = futureDate2._d;
-		futureDateEnd = moment(futureDate3).format('YYYY-MM-DD');
-
-		console.log(futureDateEnd);
-
-		
+		let futureDate3 = futureDate2._d;
+		let futureDateEnd = moment(futureDate3).format('YYYY-MM-DD');
 		getDataFromAPI2(state.userLocation.lat, state.userLocation.lng, futureDate, futureDateEnd);
 	});
 }
@@ -222,9 +217,8 @@ function submitFutureDate() {
 function submitNewLocation(){
 	$('#new-location-form').on('submit', function(event) {
 		event.preventDefault();
-		init();
+		cleanMarkers();
 		let address = $('#new-location-input').val();
-		console.log(address)
 		geoCodeSearch(address);
 		$('#new-location-input').val(' ');
 		hideShowElementsOnSubmit();
@@ -232,8 +226,12 @@ function submitNewLocation(){
 }
 
 function cleanMarkers() {
-	console.log('cleanMarkers ran');
-	state.markers = [];
+	let markers = state.markers;
+	//Loop through all the markers and remove
+        for (let i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
 }
 
 $(document).ready(function() {
