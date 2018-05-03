@@ -23,7 +23,6 @@ function init(){
 	});
 }
 
-
 //functions to get current location and events data
 function getCurrentLocation() {
 	if (navigator.geolocation) {
@@ -41,7 +40,6 @@ function getCurrentLocation() {
 		alert(`Geolocation wasn't successful, try searching for your location instead.`)
 	}
 }
-
 
 function geoCodeSearch(address) {
 	geocoder = new google.maps.Geocoder();
@@ -74,16 +72,15 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	search for your location instead.');
 }
 
-
-function getDataFromAPI(lat, lng, futureStartDate, futurestartDate2) {
+function getDataFromAPI2(lat, lng, futureStartDate, futureStartDate2) {
 	let SEAT_GEEK_URL = "https://api.seatgeek.com/2/events";
 	let settings = {
 		url: SEAT_GEEK_URL,
 		data: {
 			lat: lat,
 			lon: lng,
-			'datetime_utc.gt': futureStartDate,
-			'datetime_utc.lt': futurestartDate2,
+			'datetime_local.gt': futureStartDate,
+			'datetime_local.lt': futureStartDate2,
 			per_page: 25,
 			client_id: `MTEyMzQzMjd8MTUyMzgyODA5MS41NA`,
 			client_secret: 'ff1ee01bc647aabb41616ad3d3d3d340eb2ed31f38dd732953388a38285cccde'
@@ -93,7 +90,37 @@ function getDataFromAPI(lat, lng, futureStartDate, futurestartDate2) {
 		success: function(data) {
 			let events = data.events;
 			if (events.length === 0) {
-				alert('change this later');
+				alert('Lucky you! It looks like there are no events in your immediate area that will draw large\
+				 crowds. If you\'d like you can see what the crowded areas of another\
+				 area are by searching by location.');
+			} else {
+				displayData(events);
+			}
+		},
+		error: function(error) {
+			console.log(error);
+		}
+	};
+	$.ajax(settings);
+}
+
+function getDataFromAPI(lat, lng) {
+	let SEAT_GEEK_URL = "https://api.seatgeek.com/2/events";
+	let settings = {
+		url: SEAT_GEEK_URL,
+		data: {
+			lat: lat,
+			lon: lng,
+			per_page: 25,
+			client_id: `MTEyMzQzMjd8MTUyMzgyODA5MS41NA`,
+			client_secret: 'ff1ee01bc647aabb41616ad3d3d3d340eb2ed31f38dd732953388a38285cccde'
+		},
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+			let events = data.events;
+			if (events.length === 0) {
+				alert('Lucky you! It looks like there are no events in your immediate area that will draw large crowds. If you\'d like you can see what the crowded areas of another area are by searching by location.');
 			} else {
 				displayData(events);
 			}
@@ -138,11 +165,11 @@ function createMarker(markerPos, contentString) {
 		map: map,
 		title: "Introverts beware!",
 		infowindow: infoWindow,
-		// make the flame
+		// make the flameeeeeeeee note to self don't use emoji
 	});
 	marker.addListener('click', function(){
 		infoWindow.open(map, marker);
-		infoWindow.setContent(contentString)
+		infoWindow.setContent(contentString);
 	})
 	state.markers.push(marker)
 }
@@ -162,7 +189,7 @@ function submitManualLocationInput() {
 		geoCodeSearch(address);
 		$('#location-input').val(' ');
 		hideShowElementsOnSubmit();
-	})
+	});
 }
 
 function submitGeoLocation() {
@@ -176,14 +203,19 @@ function submitGeoLocation() {
 function submitFutureDate() {
 	$('#future-date-form').on('submit', function(event) {
 		event.preventDefault();
-		let futureDate = $('#new-location-input').val();
-		futureDate = validateForm(futureDate);
+		cleanMarkers();
+		
+		let futureDate = $('#future-date-input').val();
+		console.log(futureDate);
+		
+		let futureDate2 = moment(futureDate).add(1, 'days');
+		futureDate3 = futureDate2._d;
+		futureDateEnd = moment(futureDate3).format('YYYY-MM-DD');
 
-		$('#new-location-input').val(' ');
-		let futureDate2 = futureDate + 1 FIX THIS
+		console.log(futureDateEnd);
 
-		getDataFromAPI(state.userLocation.lat, state.userLocation.lng,\
-		 futureDate, futureDate2);
+		
+		getDataFromAPI2(state.userLocation.lat, state.userLocation.lng, futureDate, futureDateEnd);
 	});
 }
 
@@ -197,6 +229,11 @@ function submitNewLocation(){
 		$('#new-location-input').val(' ');
 		hideShowElementsOnSubmit();
 	});
+}
+
+function cleanMarkers() {
+	console.log('cleanMarkers ran');
+	state.markers = [];
 }
 
 $(document).ready(function() {
