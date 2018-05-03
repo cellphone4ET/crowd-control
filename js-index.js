@@ -168,7 +168,8 @@ function createMarker(markerPos, contentString) {
 		position: markerPos,
 		map: map,
 		title: "Introverts beware!",
-		infowindow: infoWindow
+		infowindow: infoWindow,
+		icon: 'poop30px.png'
 	});
 	marker.addListener('click', function(){
 		infoWindow.open(map, marker);
@@ -181,6 +182,7 @@ function hideShowElementsOnSubmit() {
 	$('#main-div').hide();
 	$('#map').show();
 	$('#results-menu').show();
+	$('#collapse-menu-button').show();
 	$('html').css({'background': 'none', 'overflow': ''});;
 }
 //event listeners
