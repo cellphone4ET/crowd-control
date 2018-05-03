@@ -3,11 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="API hack">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Crowd Control</title>
 	<link href="main.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Pragati+Narrow" rel="stylesheet">
 </head>
 <body>
+
 	<div id="main-div">
 		<header role="banner"><h1>Crowd Control</h1></header>
 			<main role="main">
@@ -17,48 +19,48 @@
 	<!--home page submit form--><br>
 				<div id="homepage-form">
 					<form id="main-submit-form" action="" method="get" class="js-set-location-form">
-						<fieldset>
+						<fieldset id="main-fieldset">
 						<legend>Location</legend>
 							<button id="geolocation-button" type="button">Use my location</button>
 							<p id="or">------ or ------</p>
-							<p>Enter your location here:</p>
-							<input id="location-input" type="text" required="required" aria-label="location">
-							<input id="submit-location-button" type="submit" aria-label="submit-location">
+							<p id="location-text">Enter your location here:</p>
+							<input id="location-input" class="location-input" type="text" required="required" aria-label="location">
+							<input id="submit-location-button" class="submit-location-button" type="submit" value="Go" aria-label="submit-location">
 						</fieldset>
 					</form>
 				</div>
 	</div>
 
-
-<!--- menu form for extra information-->
-			<div id="results-menu" hidden>
-				<form id="future-date-form" action="" method="get">
-					<fieldset>
-					<legend>Search a Future Date</legend>
-						<p>Want to plan ahead? Find out where the crowds will be 
-						by searching for a specific date in the future.</p>
-						<input id="future-date-input" type=text aria-label="future-date-input" placeholder="YYYY/MM/DD">
-						<input id="future-date" type="submit" aria-label="future-date">
-					</fieldset>
-				</form>
-					<br>
-				<form id="new-location-form" action="" method="get">
-					<fieldset>
-						<legend>Search a New City</legend>
-						<p>Want to see where the crowds are in a different
-						location? Search a different city to see where
-						the crowds are there.</p>
-						<input id="new-location-input" type="text"  aria-label="new-location">
-						<input id="new-location-search-submit" type="submit" aria-label="submit-new-location-search">
-					</fieldset>
-				</form>
-			</div>
+	<div id="results-menu" hidden>
+		<form id="future-date-form" action="" method="get">
+			<fieldset>
+			<legend>Search a Future Date</legend>
+				<p>Want to plan ahead? Find out where the crowds will be 
+				by searching for a specific date in the future.</p>
+				<input id="future-date-input" type=date aria-label="future-date-input" placeholder="MM-DD-YYYY">
+				<input id="future-date" class="js-future-date" type="submit" aria-label="future-date">
+			</fieldset>
+		</form>
+			<br>
+		<form id="new-location-form" action="" method="get">
+			<fieldset>
+				<legend>Search a New City</legend>
+				<p>Want to see where the crowds are in a different
+				location? Search a different city to see where
+				the crowds are there.</p>
+				<input id="new-location-input" type="text"  aria-label="new-location">
+				<input id="new-location-search-submit" type="submit" aria-label="submit-new-location-search">
+			</fieldset>
+		</form>
+	</div>	
 
 			<!--where the map will go/should-->
+			
 			<div id="map" hidden></div>
 
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 			<script type="text/javascript" src="js-index.js"></script>
+			<script type="text/javascript" src="moment.js"></script>
 			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWNt1eiLCLkuGMqDv24cfgZre_U_k_oBs&callback=init"></script>
 		</main>
 </body>
