@@ -12,15 +12,15 @@
 
 	<div id="main-div">
 		<header role="banner"><h1>Crowd Control</h1></header>
-			<main role="main">
-				<p id="explanation-text">Want to go out but can't stand getting stuck in overly congested areas of your city?
-					<br><br> Use Crowd Control to find out where the crowds are in your area so you know where not to go!</p>
+		<main role="main">
+			<p id="explanation-text">Want to go out but can't stand getting stuck in overly congested areas of your city?
+				<br><br> Use Crowd Control to find out where the crowds are in your area so you know where not to go!</p>
 
-	<!--home page submit form--><br>
+				<!--home page submit form--><br>
 				<div id="homepage-form">
 					<form id="main-submit-form" action="" method="get" class="js-set-location-form">
 						<fieldset id="main-fieldset">
-						<legend>Location</legend>
+							<legend>Location</legend>
 							<button id="geolocation-button" type="button">Use my location</button>
 							<p id="or">------ or ------</p>
 							<p id="location-text">Enter your location here:</p>
@@ -29,33 +29,52 @@
 						</fieldset>
 					</form>
 				</div>
-	</div>
+			</div>
 
-	<div id="results-menu" hidden>
-		<form id="future-date-form" action="" method="get">
-			<fieldset>
-			<legend>Search a Future Date</legend>
-				<p>Want to plan ahead? Find out where the crowds will be 
-				by searching for a specific date in the future.</p>
-				<input id="future-date-input" type=date aria-label="future-date-input" placeholder="MM-DD-YYYY">
-				<input id="future-date" class="js-future-date" type="submit" aria-label="future-date">
-			</fieldset>
-		</form>
-			<br>
-		<form id="new-location-form" action="" method="get">
-			<fieldset>
-				<legend>Search a New City</legend>
-				<p>Want to see where the crowds are in a different
-				location? Search a different city to see where
-				the crowds are there.</p>
-				<input id="new-location-input" type="text"  aria-label="new-location">
-				<input id="new-location-search-submit" type="submit" aria-label="submit-new-location-search">
-			</fieldset>
-		</form>
-	</div>	
+
+			<div id="myNav" class="overlay">
+				<div class="overlay-padding">
+				<span class="closebtn" >&times;</span>
+				<h1>Crowd Control</h1>
+				<p>Click on the icons to find out more about each crowded location.</p>
+				<form id="future-date-form" action="" method="get">
+					<fieldset>
+						<legend>Search a Future Date</legend>
+						<p>
+							Want to plan ahead? Find out where the crowds will be
+							by searching for a specific date in the future.
+						</p>
+						<input id="future-date-input" type=date aria-label="future-date-input" placeholder="MM-DD-YYYY">
+						<input id="future-date" class="js-future-date new-search" type="submit" aria-label="future-date">
+					</fieldset>
+				</form>
+				<br>
+				<form id="new-location-form" action="" method="get">
+					<fieldset>
+						<legend>Search a New City</legend>
+						<p>
+							Want to see where the crowds are in a different
+							location? Search a different city to see where
+							the crowds are there.
+						</p>
+						<input id="new-location-input" type="text"  aria-label="new-location">
+						<input id="new-location-search-submit" class="new-search" type="submit" aria-label="submit-new-location-search">
+					</fieldset>
+				</form>
+					</div>
+			</div>
+
+
+
+			<!-- Button to close the overlay navigation -->
+
+			<span class="open-nav">☰ Open</span>
+
+
+
 
 			<!--where the map will go/should-->
-			
+
 			<div id="map" hidden></div>
 
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -63,5 +82,5 @@
 			<script type="text/javascript" src="moment.js"></script>
 			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWNt1eiLCLkuGMqDv24cfgZre_U_k_oBs&callback=init"></script>
 		</main>
-</body>
-</html>
+	</body>
+	</html>

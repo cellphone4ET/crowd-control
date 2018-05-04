@@ -1,228 +1,304 @@
 * {
-  box-sizing: border-box;*/
-  text-align: center;
-  font-family: 'Pragati Narrow', sans-serif;
+  box-sizing: border-box;
+  */: center;
+  font-family: "Pragati Narrow", sans-serif;
 }
 
 html {
-	background: url("https://i.imgur.com/UTk3vSX.png");
- 	-webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
-  	background-size: cover;
-  	width: 100%;
- 	overflow: scroll;
+  background: url("https://i.imgur.com/UTk3vSX.png");
+  overflow: scroll;
 }
 
 header {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h1 {
-	
-	margin-right: auto;
-	margin-left: auto;
-	font-size: 90px;
-	line-height: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 90px;
+  line-height: 90%;
 }
 
 h2 {
-	font-size: 35px;
-	font-weight: bold;
-	margin-bottom: 0px;
-	margin-top: 0px;
-	line-height: 100%;
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  line-height: 100%;
 }
 
 h3 {
-	font-size: 25px;
-	line-height: 50%;
+  font-size: 25px;
+  line-height: 50%;
 }
 
 #event-info {
-	line-height: 100%;
-	font-size: 20px;
-
+  line-height: 100%;
+  font-size: 20px;
 }
 
 #homepage-form {
-	margin-right: auto;
-	margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #main-div {
-	width: 350px;
-	text-align: center;
-	background-color: white;
-	margin-top: 100px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 100px;
-	padding-right: 30px;
-	padding-left: 30px;
-	padding-top: 20px;
-	padding-bottom: 0px;
-	border-radius: 3px;
+  width: 350px;
+  text-align: center;
+  background-color: white;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  border-radius: 3px;
 }
 
 #explanation-text {
-	line-height: 100%;
-	font-size: 25px;
-	margin-bottom: 0%;
+  line-height: 100%;
+  font-size: 25px;
+  margin-bottom: 0%;
 }
 
 fieldset legend {
-   border: 0;
-   padding: 0;
-   white-space: normal;
+  border: 0;
+  padding: 0;
+  white-space: normal;
 }
 
 #main-fieldset {
-	margin: auto;
-	border:0;
-	padding:0;
+  margin: auto;
+  border: 0;
+  padding: 0;
 }
 
 legend {
-	display: none;
+  display: none;
 }
 
 #homepage-form {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #geolocation-button {
-	display: inline-block;
-	height: 70px;
-	width: 85%;
-	margin-right: auto;
-	margin-left: auto;
-	margin-bottom: 15px;
-	font-size: 27px;
-	background-color: #EB5757;
+  display: inline-block;
+  height: 70px;
+  width: 85%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 15px;
+  font-size: 27px;
+  background-color: #eb5757;
 }
 
 #or {
-	font-size: 40px;
-	margin: 0px;
+  font-size: 40px;
+  margin: 0px;
 }
 
 #location-text {
-	font-size: 27px;
-	margin: 0px;
+  font-size: 27px;
+  margin: 0px;
 }
 
 #location-input {
-	width: 200px;
-	height: 53px;
-	margin-bottom: 20%;
-	background-color: #F1EDED;
-	border: none;
-	font-size: 30px;
+  width: 200px;
+  height: 53px;
+  margin-bottom: 20%;
+  background-color: #f1eded;
+  border: none;
+  font-size: 30px;
 }
 
 #submit-location-button {
-	background-color: #EB5757;
-	width: 75px;
-	font-size: 30px;
-	margin-bottom: 40px;
+  background-color: #eb5757;
+  width: 75px;
+  font-size: 30px;
+  margin-bottom: 40px;
 }
 
-#geolocation-button, #submit-location-button:hover { 
-    cursor: pointer;
+#geolocation-button,
+#submit-location-button:hover {
+  cursor: pointer;
 }
 
 label {
-	display: block;
+  display: block;
 }
 #future-date {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 #map {
-	position: absolute;
-	height: 100%;
-	top: 0;
-	bottom: -200px;
-	left: 0;
-	right: 0;
-	z-index: 0;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  bottom: -200px;
+  left: 0;
+  right: 0;
+  z-index: 0;
 }
 
-#results-menu {
+/*#results-menu {
 	z-index: 100;
-	position: relative;
+	position: fixed;
 	margin-top: 45px;
 	background-color: white;
+}*/
+
+#future-date-form,
+#new-location-form {
+  position: relative;
 }
 
+/* The Overlay (background) */
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 50%;
+  max-width: 400px;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
 
-#future-date-form, #new-location-form {
-	position: relative;
+  background-color: white; /* rgb(0, 0, 0);*/ /* Black fallback color */
+  background-color: white; /*rgba(0, 0, 0, 0.8);*/ /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+.overlay-padding {
+  padding: 0 20px;
+}
+/* Position the content inside the overlay */
+.overlay-content {
+  position: relative;
+  top: 25%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  z-index: 100;
+  position: fixed;
+  margin-top: 45px;
+  background-color: white;
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block; /* Display block instead of inline */
+  transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover,
+.overlay a:focus {
+  color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-width: 450px) {
+  .overlay a {
+    font-size: 20px;
+    width: 50%;
+  }
+
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .overlay {
+    width: 80%;
+  }
 }
 
 /* mobile */
 
 @media only screen and (max-device-width: 640px) {
-	html {
-		width: 100%;
-		/*position: absolute;*/
-		overflow: scroll;
-	}
+  html {
+    width: 100%;
+    /*position: absolute;*/
+    overflow: scroll;
+  }
 
-	h1 {
-		margin-bottom: 20%;
-		margin-top: 5%;
-		margin-right: auto;
-		margin-left: auto;
-		font-size: 20vw;
-		line-height: 80%;
-	}
+  h1 {
+    margin-bottom: 20%;
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 20vw;
+    line-height: 80%;
+  }
 
-	#main-div {
-		width: 75%;
-		text-align: center;
-		background-color: white;
-		margin-top: 100px;
-		margin-left: auto;
-		margin-right: auto;
-		margin top: 20%;
-		}
+  #main-div {
+    width: 75%;
+    text-align: center;
+    background-color: white;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 20%;
+  }
 
-	#homepage-form {
-		margin-bottom: 20px;
-	}
+  #homepage-form {
+    margin-bottom: 20px;
+  }
 
-	#main-fieldset {
-		margin: auto;
-		width: 75px;
-	}
+  #main-fieldset {
+    margin: auto;
+    width: 75px;
+  }
 
-	#location-text {
-		font-size: 27px;
-		margin-bottom: 0%;
-	}
+  #location-text {
+    font-size: 27px;
+    margin-bottom: 0%;
+  }
 
-	#location-input {
-		margin-bottom: 5%
-	}
+  #location-input {
+    margin-bottom: 5%;
+  }
 
-	#submit-location-button {
-		background-color: #EB5757;
-		width: 75px;
-		font-size: 30px;
-		margin-bottom: 10%;
-	}
+  #submit-location-button {
+    background-color: #eb5757;
+    width: 75px;
+    font-size: 30px;
+    margin-bottom: 10%;
+  }
 
-	#map {
-		height: 100%;
-		width: 100%;
-	}
-
+  #map {
+    height: 100%;
+    width: 100%;
+  }
 }
 
+/*asd*/
 
-
-
-
-
+.open-nav {
+  position: fixed;
+  /* width: 100px;
+  height: 100px; */
+  padding: 10px 15px;
+  top: 60px;
+  left: 60px;
+  z-index: 1000;
+  background-color: white;
+}
