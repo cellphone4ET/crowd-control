@@ -139,15 +139,21 @@ label {
 	margin-bottom: 15px;
 }
 
-#results-menu {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
 #map {
 	position: absolute;
 	height: 100%;
-	width: 100%;
+	top: 0;
+	bottom: -200px;
+	left: 0;
+	right: 0;
+	z-index: 0;
+}
+
+#results-menu {
+	z-index: 100;
+	position: relative;
+	margin-top: 45px;
+	background-color: white;
 }
 
 

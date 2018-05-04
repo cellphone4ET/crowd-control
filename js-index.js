@@ -73,7 +73,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	$('#main-div').show();
 	$('#map').hide();
 	$('#results-menu').hide();
-	$('html').css({'background': 'url("https://i.imgur.com/UTk3vSX.png");'});
+	$('html').css({'background': 'url("https://i.imgur.com/UTk3vSX.png")', 'overflow': 'scroll', 'width': '100%'});
 }
 
 function getDataFromAPI2(lat, lng, futureStartDate, futureStartDate2) {
