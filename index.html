@@ -31,7 +31,10 @@
 				</div>
 	</div>
 
-	<div id="results-menu" hidden>
+	
+	<div id="myNav" class="overlay">
+		<h1>Crowd Control</h1>
+		<p>Click on the icons to find out more about each crowded location.</p>
 		<form id="future-date-form" action="" method="get">
 			<fieldset>
 			<legend>Search a Future Date</legend>
@@ -52,6 +55,14 @@
 				<input id="new-location-search-submit" type="submit" aria-label="submit-new-location-search">
 			</fieldset>
 		</form>
+	<!-- Button to close the overlay navigation -->
+  	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<span onclick="openNav()">☰ Open</span>
+	<div id="results-menu" class="overlay-content" hidden>
+		<span onclick="openNav()">☰ Open</span>
+		<!-- <p>Crowd Control</p> -->
+		
+	</div>
 	</div>	
 
 			<!--where the map will go/should-->

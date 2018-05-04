@@ -236,6 +236,14 @@ function cleanMarkers() {
         markers = [];
 }
 
+function openNav() {
+    document.getElementById("myNav").style.width = "25%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+}
+
 $(document).ready(function() {
 	submitFutureDate();
 	submitNewLocation();
