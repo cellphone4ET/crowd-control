@@ -110,11 +110,11 @@ legend {
 #location-input {
   width: 200px;
   height: 53px;
+  margin-top: 18px;
   margin-bottom: 20%;
   background-color: #f1eded;
   border: none;
-  font-size: 30px;
-  margin-top: 18px;
+  /* font-size: 30px; */
 }
 
 #submit-location-button {
