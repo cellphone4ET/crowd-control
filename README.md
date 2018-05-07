@@ -10,22 +10,22 @@ As much as technology is about connecting people, sometimes it's nice to deconne
 * search a city by location or by name
 * search a different day 
 
-##Screen Shots
+## Screen Shots
 In Crowd Control the user interacts with three main screens: the landing page, the results map, and the results map with expanded options menu.
 
-###Landing Page
+### Landing Page
 
 ![crowd-control-home-page](https://user-images.githubusercontent.com/30470040/39723181-e13f2dd6-51f9-11e8-985d-19c0a8fa63e4.png)
 
 
 
-###Results Map
+### Results Map
 
 ![crowd-control-results-page](https://user-images.githubusercontent.com/30470040/39723387-882b1614-51fa-11e8-815f-b4d320b41b7e.png)
 
 
 
-###Results Map with Side Menu Accessed
+### Results Map with Side Menu Accessed
 
 ![crowd-control-expanded-menu](https://user-images.githubusercontent.com/30470040/39723241-11e1b68e-51fa-11e8-9b69-5b49d199a7bf.png)
 
