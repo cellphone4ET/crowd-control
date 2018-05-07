@@ -158,7 +158,7 @@ function createMarker(markerPos, contentString) {
     map: map,
     title: "Introverts beware!",
     infowindow: infoWindow,
-    icon: "reddotpng.png"
+    icon: "/images/reddot.png"
   });
   marker.addListener("click", function() {
     infoWindow.open(map, marker);
