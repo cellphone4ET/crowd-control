@@ -15,7 +15,7 @@ Landing Page
 
 Results Map
 	- info window accessed by clicking red dot
-[results map for crowd control](https://imgur.com/a/DwxbcWn "Results map")
+![resultsmap]([crowd-control-results-page.png](https://github.com/cellphone4ET/crowd-control/blob/master/crowd-control-results-page.png))
 
 Results Map with Side Menu Accessed
 	- new location search functionality
