@@ -9,6 +9,7 @@ var infoWindow;
 var markerPos;
 var contentString;
 
+// initialize map
 function init() {
   geocoder = new google.maps.Geocoder();
   var latlng = new google.maps.LatLng(0, 0);
@@ -23,7 +24,7 @@ function init() {
   });
 }
 
-//functions to get current location and events data
+// all functions related to getting location data
 function getCurrentLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -39,7 +40,6 @@ function getCurrentLocation() {
       }
     );
   } else {
-    // Browser doesn't support Geolocation
     alert(
       `Geolocation wasn't successful, try searching for your location instead.`
     );
@@ -54,7 +54,6 @@ function geoCodeSearch(address) {
       state.userLocation.lng = results[0].geometry.location.lng();
       geocodeSuccess();
     } else {
-      // Browser doesn't support Geolocation
       handleLocationError(false, infoWindow, map.getCenter());
     }
   });
@@ -77,8 +76,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       : "Error: Your browser doesn't support geolocation."
   );
   alert(
-    "Whoops! Looks like geolocation is having some issues. Please\
-	search for your location instead."
+    "Whoops! Looks like geolocation is having some issues. Please \
+search for your location instead."
   );
   $("#main-div").show();
   $("#map").hide();
@@ -109,7 +108,8 @@ function getDataFromAPI(lat, lng, startDate, endDate) {
       if (events.length === 0) {
         alert(
           "Lucky you! It looks like there are no locations in your immediate area that will draw large\
-			crowds."
+ crowds. If you'd like you can click the open button to search for another location, or you can just\
+ bask in your solitude. :)"
         );
       } else {
         displayData(events);
@@ -135,6 +135,7 @@ function displayData(events) {
       lng: event.venue.location.lon
     };
 
+    // necessary reformatting of returned JSON event date/time data
     let date = new Date(event.datetime_local);
     let readableDate = date.toDateString();
     let readableHours = date.getHours();
@@ -168,13 +169,6 @@ function createMarker(markerPos, contentString) {
   state.markers.push(marker);
 }
 
-function hideShowElementsOnSubmit() {
-  $("#main-div").hide();
-  $("#map").show();
-  $("#results-menu").show();
-  $("#collapse-menu-button").show();
-  $("html").css({ background: "none", overflow: "" });
-}
 //event listeners
 function submitManualLocationInput() {
   $("#main-submit-form").on("submit", function(event) {
@@ -197,6 +191,8 @@ function submitFutureDate() {
   $("#future-date-form").on("submit", function(event) {
     event.preventDefault();
     cleanMarkers();
+    // use of moment.js script to properly add 1 day to date selected by user,
+    // which is to be used as an end date (necessary API params)
     let futureDate = $("#future-date-input").val();
     let futureDate2 = moment(futureDate).add(1, "days");
     let futureDate3 = futureDate2._d;
@@ -221,9 +217,17 @@ function submitNewLocation() {
   });
 }
 
+// functions that manipulate what user sees
+function hideShowElementsOnSubmit() {
+  $("#main-div").hide();
+  $("#map").show();
+  $("#results-menu").show();
+  $("#collapse-menu-button").show();
+  $("html").css({ background: "none", overflow: "" });
+}
+
 function cleanMarkers() {
   let markers = state.markers;
-  //Loop through all the markers and remove
   for (let i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }

@@ -104,6 +104,7 @@ legend {
 #location-text {
   font-size: 27px;
   margin: 0px;
+  margin-top: 18px;
 }
 
 #location-input {
@@ -113,13 +114,16 @@ legend {
   background-color: #f1eded;
   border: none;
   font-size: 30px;
+  margin-top: 18px;
 }
 
 #submit-location-button {
   background-color: #eb5757;
   width: 75px;
+  height: 53px;
   font-size: 30px;
   margin-bottom: 40px;
+  margin-top: 18px;
 }
 
 #geolocation-button,
@@ -147,6 +151,14 @@ label {
 #future-date-form,
 #new-location-form {
   position: relative;
+}
+
+#new-location-fieldset {
+  margin-bottom: 20px;
+}
+
+#new-location-search-submit, #future-date {
+  background-color: #eb5757;
 }
 
 /* The Overlay (background) */
@@ -262,6 +274,12 @@ label {
     width: 75px;
   }
 
+  #geolocation-button {
+    font-size: 23px;
+    line-height: 80%;
+    height: 60px;
+  }
+
   #location-text {
     font-size: 27px;
     margin-bottom: 0%;
@@ -269,19 +287,13 @@ label {
 
   #location-input {
   width: 165px;
-  height: 53px;
+  height: 40px;
   margin-bottom: 5%;
   margin-left: auto;
   margin-right: auto;
   background-color: #f1eded;
   border: none;
   font-size: 30px;
-  }
-
-  #geolocation-button {
-    font-size: 23px;
-    line-height: 80%;
-    height: 60px;
   }
 
   #submit-location-button {
@@ -313,7 +325,7 @@ label {
   position: fixed;
   padding: 10px 15px;
   top: 60px;
-  left: 60px;
+  left: 15px;
   z-index: 1000;
   background-color: #eb5757;
 }
