@@ -21,14 +21,13 @@ In Crowd Control the user interacts with three main screens: the landing page, t
 
 ###Results Map
 
-![crowd-control-expanded-menu](https://user-images.githubusercontent.com/30470040/39723241-11e1b68e-51fa-11e8-9b69-5b49d199a7bf.png)
+![crowd-control-results-page](https://user-images.githubusercontent.com/30470040/39723387-882b1614-51fa-11e8-815f-b4d320b41b7e.png)
 
 
 
 ###Results Map with Side Menu Accessed
 
-![results map menu](https://raw.githubusercontent.com/cellphone4ET/crowd-control/master/path/to/crowd-control-expanded-menu.png)
-
+![crowd-control-expanded-menu](https://user-images.githubusercontent.com/30470040/39723241-11e1b68e-51fa-11e8-9b69-5b49d199a7bf.png)
 
 ## Technology
 * HTML
