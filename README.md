@@ -15,13 +15,13 @@ In Crowd Control the user interacts with three main screens: the landing page, t
 
 ###Landing Page
 
-![landing page](/Users/ericajohnson/Desktop/projects/crowd-control/crowd-control-home-page.png)
+![crowd-control-home-page](https://user-images.githubusercontent.com/30470040/39723181-e13f2dd6-51f9-11e8-985d-19c0a8fa63e4.png)
 
 
 
 ###Results Map
 
-![results map](/Users/ericajohnson/Desktop/projects/crowd-control/crowd-control-results-page.png)
+![crowd-control-expanded-menu](https://user-images.githubusercontent.com/30470040/39723241-11e1b68e-51fa-11e8-9b69-5b49d199a7bf.png)
 
 
 
