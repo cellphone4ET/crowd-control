@@ -11,16 +11,23 @@ As much as technology is about connecting people, sometimes it's nice to deconne
 * search a different day 
 
 ##Screen Shots
-Landing Page
+In Crowd Control the user interacts with three main screens: the landing page, the results map, and the results map with expanded options menu.
 
-Results Map
-	- info window accessed by clicking red dot
-![resultsmap]([crowd-control-results-page.png](https://github.com/cellphone4ET/crowd-control/blob/master/crowd-control-results-page.png)
+###Landing Page
 
-Results Map with Side Menu Accessed
-	- new location search functionality
-	- different date search functionality 
+![landing page](/Users/ericajohnson/Desktop/projects/crowd-control/crowd-control-home-page.png)
 
+
+
+###Results Map
+
+![results map](/Users/ericajohnson/Desktop/projects/crowd-control/crowd-control-results-page.png)
+
+
+
+###Results Map with Side Menu Accessed
+
+![results map menu](/Users/ericajohnson/Desktop/projects/crowd-control/crowd-control-expanded-menu.png)
 
 
 ## Technology
