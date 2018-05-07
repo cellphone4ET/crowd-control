@@ -1,6 +1,6 @@
 # Crowd Control
 
-An app for the introvert in all of us. User can use either geolocation or manually submit their location to find out where large crowds will be in their general area. 
+An app for the introvert in all of us. Users can either search by geolocation or manually submit their location to find out where any large crowds will be in their general area. 
 
 ## Motivation
 
