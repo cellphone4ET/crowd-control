@@ -114,7 +114,7 @@ legend {
   margin-bottom: 20%;
   background-color: #f1eded;
   border: none;
-  /* font-size: 30px; */
+  font-size: 20px; 
 }
 
 #submit-location-button {
@@ -288,7 +288,6 @@ label {
   margin-right: auto;
   background-color: #f1eded;
   border: none;
-  font-size: 20px;
   }
 
   #submit-location-button {
@@ -299,6 +298,10 @@ label {
     margin-bottom: 10%;
     text-align: center;
     padding-bottom: 10px;
+  }
+
+  #new-location-search-submit, #future-date  {
+    margin-top: 5px;
   }
 
   .gm-style-iw {
