@@ -15,7 +15,7 @@ Landing Page
 
 Results Map
 	- info window accessed by clicking red dot
-![resultsmap]([crowd-control-results-page.png](https://github.com/cellphone4ET/crowd-control/blob/master/crowd-control-results-page.png))
+![resultsmap]([crowd-control-results-page.png](https://github.com/cellphone4ET/crowd-control/blob/master/crowd-control-results-page.png)
 
 Results Map with Side Menu Accessed
 	- new location search functionality
