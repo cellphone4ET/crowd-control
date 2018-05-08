@@ -146,7 +146,7 @@ function displayData(events) {
 		<h2>${event.short_title}</h2>
 		<h3>${event.venue.name}</h3>
 		<p id="event-info">On ${readableDate} at ${readableHours}:${readableMinutes}<br>\
-    there will be a <br> large crowd around ${event.venue.address}.<br><br>\
+    there will be a large crowd around ${event.venue.address}.<br><br>\
     It may be best to avoid that area.</p>
 		</div>`;
 
