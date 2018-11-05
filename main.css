@@ -286,9 +286,10 @@ label {
   margin-bottom: 5%;
   margin-left: auto;
   margin-right: auto;
-  background-color: #f1eded;
-  border: none;
+  font-size: 20px;
+
   }
+
 
   #submit-location-button {
     background-color: #eb5757;
