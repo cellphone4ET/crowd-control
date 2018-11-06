@@ -287,7 +287,6 @@ label {
   margin-left: auto;
   margin-right: auto;
   font-size: 20px;
-
   }
 
 
@@ -298,6 +297,8 @@ label {
     font-size: 30px;
     margin-bottom: 10%;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     padding-bottom: 10px;
   }
 
